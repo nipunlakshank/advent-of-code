@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+# This script is used to run each of the scripts in the [year]/[day] directories
+
+# Get the year and day from the arguments
+year=$1
+day=$2
+part=$3
+
+echo "Running './$year/Day $day/part$part.sh'"
+echo ""
+
+# Check if the year and day are valid
+if [ -z "$year" ] || [ -z "$day" ] || [ -z "$part" ]; then
+    echo "Usage: $0 <year> <day> [part]"
+    echo "  year: the year of the puzzle"
+    echo "  day: the day of the puzzle (1-25)"
+    echo "  part: the part of the puzzle (1 or 2)"
+    exit 1
+fi
+
+# Check if the year is valid
+if [ ! -d "$year" ]; then
+    echo "Year $year does not exist"
+    exit 1
+fi
+
+# Check if the day is valid
+if [ ! -d "$year/Day $day" ]; then
+    echo "Day $day does not exist"
+    exit 1
+fi
+
+# Check if the part is valid
+if [ "$part" != "1" ] && [ "$part" != "2" ]; then
+    echo "Part $part does not exist"
+    exit 1
+fi
+
+# Change to the directory of the script
+cd "$year/Day $day"
+
+# Make the script executable
+chmod +x "part$part.sh"
+
+# start time in milliseconds
+start=$(gdate +%s.%6N)
+
+# Run the script
+./part$part.sh
+
+# end time in milliseconds
+end=$(gdate +%s.%6N)
+
+echo "Execution time: $(echo "($end - $start) * 1000" | bc) ms"
