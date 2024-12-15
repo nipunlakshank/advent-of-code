@@ -46,8 +46,9 @@ chmod +x "part$part.sh"
 # start time in milliseconds
 start=$(gdate +%s.%6N)
 
-# Run the script
+echo -e "------------------------------"
 ./part$part.sh
+echo -e "------------------------------\n"
 
 # end time in milliseconds
 end=$(gdate +%s.%6N)
