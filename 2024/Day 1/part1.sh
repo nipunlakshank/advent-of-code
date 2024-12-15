@@ -3,7 +3,7 @@
 # start time in milliseconds
 start=$(gdate +%s.%6N)
 
-input="$(cat input1.txt)"
+input="$(cat input.txt)"
 
 distance=0
 list1=()
