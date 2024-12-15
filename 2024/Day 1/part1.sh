@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# start time in milliseconds
-start=$(gdate +%s.%6N)
-
 input="$(cat input.txt)"
 
 distance=0
@@ -33,8 +30,4 @@ for i in "${!sortList1[@]}"; do
     fi
 done
 
-# end time in milliseconds
-end=$(gdate +%s.%6N)
-
 echo $distance
-echo "Execution time: $(echo "($end - $start) * 1000" | bc) ms"
